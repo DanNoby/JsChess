@@ -155,34 +155,13 @@ function checkIfValid(target) {
 
     case 'knight':
       if (
-        startId + width * 2 - 1 === targetId || 
-        startId + width * 2 + 1 === targetId ||
-        startId + width - 2 === targetId ||
-        startId + width + 2 === targetId ||
-        startId - width * 2 - 1 === targetId || 
-        startId - width * 2 + 1 === targetId ||
-        startId - width - 2 === targetId ||
-        startId - width + 2 === targetId
+          (Math.abs(Math.floor(startId / 8) - Math.floor(targetId / 8)) === 1 && Math.abs(startId % 8 - targetId % 8) === 2) ||
+          (Math.abs(Math.floor(startId / 8) - Math.floor(targetId / 8)) === 2 && Math.abs(startId % 8 - targetId % 8) === 1)
       ) {
-        return true;
+          return true;
       }
       break;
 
-
-    case 'knight':
-      if (
-        startId + width * 2 - 1 === targetId || 
-        startId + width * 2 + 1 === targetId ||
-        startId + width - 2 === targetId ||
-        startId + width + 2 === targetId ||
-        startId - width * 2 - 1 === targetId || 
-        startId - width * 2 + 1 === targetId ||
-        startId - width - 2 === targetId ||
-        startId - width + 2 === targetId
-      ) {
-        return true;
-      }
-      break;
     case 'bishop':
       if (
         startId + width + 1 === targetId ||
@@ -220,101 +199,30 @@ function checkIfValid(target) {
         return true
       }
       break;
-    case 'rook':
-      if (
-        //++
-        startId + width === targetId ||
-        startId + width * 2 === targetId && !document.querySelector(`[square-id="${startId + width}"]`).firstChild ||
-        startId + width * 3 === targetId && !document.querySelector(`[square-id="${startId + width}"]`).firstChild && !document.querySelector(`[square-id="${startId + width * 2}"]`).firstChild ||
-        startId + width * 4 === targetId && !document.querySelector(`[square-id="${startId + width}"]`).firstChild 
-        && !document.querySelector(`[square-id="${startId + width * 2}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId + width * 3}"]`).firstChild ||
-        startId + width * 5 === targetId && !document.querySelector(`[square-id="${startId + width}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId + width * 2}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId + width * 3}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId + width * 4}"]`).firstChild ||
-        startId + width * 6 === targetId && !document.querySelector(`[square-id="${startId + width}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId + width * 2}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId + width * 3}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId + width * 4}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId + width * 5}"]`).firstChild ||
-        startId + width * 7 === targetId && !document.querySelector(`[square-id="${startId + width}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId + width * 2}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId + width * 3}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId + width * 4}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId + width * 5}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId + width * 6}"]`).firstChild ||
-        
-        //--
-        startId - width === targetId ||
-        startId - width * 2 === targetId && !document.querySelector(`[square-id="${startId - width}"]`).firstChild ||
-        startId - width * 3 === targetId && !document.querySelector(`[square-id="${startId - width}"]`).firstChild && !document.querySelector(`[square-id="${startId + width * 2}"]`).firstChild ||
-        startId - width * 4 === targetId && !document.querySelector(`[square-id="${startId - width}"]`).firstChild 
-        && !document.querySelector(`[square-id="${startId - width * 2}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId - width * 3}"]`).firstChild ||
-        startId - width * 5 === targetId && !document.querySelector(`[square-id="${startId - width}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId - width * 2}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId - width * 3}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId - width * 4}"]`).firstChild ||
-        startId - width * 6 === targetId && !document.querySelector(`[square-id="${startId - width}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId - width * 2}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId - width * 3}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId - width * 4}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId - width * 5}"]`).firstChild ||
-        startId - width * 7 === targetId && !document.querySelector(`[square-id="${startId - width}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId - width * 2}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId - width * 3}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId - width * 4}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId - width * 5}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId - width * 6}"]`).firstChild ||
 
-        startId + 1 === targetId ||
-        startId + 2 === targetId && !document.querySelector(`[square-id="${startId + 1}"]`).firstChild ||
-        startId + 3 === targetId && !document.querySelector(`[square-id="${startId + 1}"]`).firstChild && !document.querySelector(`[square-id="${startId + 2}"]`).firstChild ||
-        startId + 4 === targetId && !document.querySelector(`[square-id="${startId + 1}"]`).firstChild 
-        && !document.querySelector(`[square-id="${startId + 2}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId + 3}"]`).firstChild ||
-        startId +  5 === targetId && !document.querySelector(`[square-id="${startId + 1}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId + 2}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId + 3}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId + 4}"]`).firstChild ||
-        startId + 6 === targetId && !document.querySelector(`[square-id="${startId + 1}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId + 2}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId + 3}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId +  4}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId + 5}"]`).firstChild ||
-        startId + 7 === targetId && !document.querySelector(`[square-id="${startId + 1}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId + 2}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId +3}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId + 4}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId + 5}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId + 6}"]`).firstChild ||
-        
-        startId - 1 === targetId ||
-        startId - 2 === targetId && !document.querySelector(`[square-id="${startId - 1}"]`).firstChild ||
-        startId - 3 === targetId && !document.querySelector(`[square-id="${startId - 1}"]`).firstChild && !document.querySelector(`[square-id="${startId - 2}"]`).firstChild ||
-        startId - 4 === targetId && !document.querySelector(`[square-id="${startId - 1}"]`).firstChild 
-        && !document.querySelector(`[square-id="${startId - 2}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId - 3}"]`).firstChild ||
-        startId -  5 === targetId && !document.querySelector(`[square-id="${startId- 1}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId - 2}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId - 3}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId - 4}"]`).firstChild ||
-        startId - 6 === targetId && !document.querySelector(`[square-id="${startId - 1}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId - 2}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId - 3}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId -  4}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId - 5}"]`).firstChild ||
-        startId - 7 === targetId && !document.querySelector(`[square-id="${startId - 1}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId - 2}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId - 3}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId - 4}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId - 5}"]`).firstChild
-        && !document.querySelector(`[square-id="${startId - 6}"]`).firstChild
-      ) {
-        return true
+    case 'rook':
+      let tempId, increment;
+      tempId = startId;
+
+      if(startId % 8 == targetId % 8) {
+        increment = (startId < targetId) ? 8 : -8;
       }
+      else if(Math.floor(startId/8) == Math.floor(targetId/8)) {
+        increment = (startId < targetId) ? 1 : -1;
+      }
+      else {
+        return false;
+      }
+
+      while(tempId !== targetId) {
+        tempId += increment;
+        if(document.querySelector(`[square-id="${tempId}"]`).firstChild && tempId!==targetId) {
+          return false;
+        }
+      }
+      return true;
       break;
+
     case 'queen':
       if (
         startId + width + 1 === targetId ||
@@ -458,3 +366,5 @@ function checkIfValid(target) {
   }
   return false;
 }
+
+
